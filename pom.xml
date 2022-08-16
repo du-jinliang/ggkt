@@ -8,6 +8,7 @@
     <modules>
         <module>ggkt-common</module>
         <module>ggkt-vod</module>
+        <module>ggkt-monitor</module>
     </modules>
     <name>ggkt_parent</name>
     <description>ggkt_parent</description>

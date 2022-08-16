@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ggkt-monitor
+  cloud:
+    nacos:
+      config:
+        server-addr: 39.106.88.176:8849
+        file-extension: yml
+        group: ${spring.application.name}
+        namespace: 7c3678eb-dd51-46e4-afb5-05f885cd0c25
