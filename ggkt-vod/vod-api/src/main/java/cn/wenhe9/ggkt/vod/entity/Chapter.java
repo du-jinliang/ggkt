@@ -7,6 +7,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+/**
+ * @author DuJinliang
+ * 2022/08/16
+ */
+
 @Data
 @ApiModel(description = "Chapter")
 @TableName("chapter")

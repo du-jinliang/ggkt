@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author helen
- * @since 2020/6/5
+ * @author DuJinliang
+ * 2022/08/16
  */
+
 @ApiModel("课程分类列表")
 @Data
 public class SubjectVo {

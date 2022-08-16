@@ -6,6 +6,11 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * @author DuJinliang
+ * 2022/08/16
+ */
+
 @Data
 public class VideoVisitorCountVo {
 

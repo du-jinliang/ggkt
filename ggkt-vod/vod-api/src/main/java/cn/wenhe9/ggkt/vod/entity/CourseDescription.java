@@ -11,6 +11,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author DuJinliang
+ * 2022/08/16
+ */
+
 @Data
 @ApiModel(description = "CourseDescription")
 @TableName("course_description")

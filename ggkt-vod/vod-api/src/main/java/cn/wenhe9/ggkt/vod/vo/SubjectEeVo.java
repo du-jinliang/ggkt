@@ -4,12 +4,10 @@ import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.Data;
 
 /**
- * <p>
- * Dict
- * </p>
- *
- * @author qy
+ * @author DuJinliang
+ * 2022/08/16
  */
+
 @Data
 public class SubjectEeVo {
 

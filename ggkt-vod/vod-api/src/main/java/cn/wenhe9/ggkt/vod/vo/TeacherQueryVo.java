@@ -3,6 +3,11 @@ package cn.wenhe9.ggkt.vod.vo;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+/**
+ * @author DuJinliang
+ * 2022/08/16
+ */
+
 @Data
 public class TeacherQueryVo {
 	

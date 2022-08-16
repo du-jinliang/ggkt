@@ -5,9 +5,10 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * @author helen
- * @since 2020/6/6
+ * @author DuJinliang
+ * 2022/08/16
  */
+
 @ApiModel("课程对象")
 @Data
 public class CourseVo {

@@ -1,6 +1,8 @@
 package cn.wenhe9.ggkt.vod.service;
 
 import cn.wenhe9.ggkt.vod.entity.Teacher;
+import cn.wenhe9.ggkt.vod.vo.TeacherQueryVo;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,4 +15,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface TeacherService extends IService<Teacher> {
 
+    /**
+     * 分页查询讲师
+     */
+    Page<Teacher> queryByPage(long current, long limit, TeacherQueryVo teacherQueryVo);
 }

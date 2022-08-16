@@ -7,9 +7,10 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * @author helen
- * @since 2020/6/6
+ * @author DuJinliang
+ * 2022/08/16
  */
+
 @ApiModel("课程基本信息")
 @Data
 public class CourseFormVo {

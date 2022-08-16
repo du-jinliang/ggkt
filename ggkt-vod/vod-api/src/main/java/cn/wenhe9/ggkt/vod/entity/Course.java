@@ -10,6 +10,11 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * @author DuJinliang
+ * 2022/08/16
+ */
+
 @Data
 @ApiModel(description = "Course")
 @TableName("course")
