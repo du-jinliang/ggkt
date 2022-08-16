@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: ggkt-oss
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        extension-configs:
+          - data-id: ggkt-oss.yml
+            group: ggkt-common
+            refresh: true

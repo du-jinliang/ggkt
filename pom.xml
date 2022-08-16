@@ -9,6 +9,7 @@
         <module>ggkt-common</module>
         <module>ggkt-vod</module>
         <module>ggkt-monitor</module>
+        <module>ggkt-oss</module>
     </modules>
     <name>ggkt_parent</name>
     <description>ggkt_parent</description>
@@ -22,6 +23,7 @@
         <alibaba.version>2.2.0.RELEASE</alibaba.version>
         <mybatis-plus.version>3.4.1</mybatis-plus.version>
         <mysql.version>8.0.19</mysql.version>
+        <druid.version>1.2.8</druid.version>
         <swagger.version>2.9.2</swagger.version>
         <jwt.version>0.7.0</jwt.version>
         <fastjson.version>1.2.29</fastjson.version>
@@ -73,6 +75,12 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
             </dependency>
 
             <dependency>
