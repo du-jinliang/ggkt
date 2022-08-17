@@ -34,6 +34,10 @@ public enum ResultResponseEnum {
 
     COUPON_LIMIT_GET(221, "优惠券已发放完毕"),
 
+    EXPORT_DATA_ERROR(21002, "导出失败"),
+
+    IMPORT_DATA_ERROR(21003, "导入失败"),
+
     FILE_UPLOAD_ERROR( 21004, "文件上传错误"),
 
     FILE_DELETE_ERROR( 21005, "文件刪除错误"),

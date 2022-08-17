@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * 讲师 服务类
  * </p>
  *
- * @author wenhe9
+ * @author DuJinliang
  * @since 2022-08-14
  */
 public interface TeacherService extends IService<Teacher> {

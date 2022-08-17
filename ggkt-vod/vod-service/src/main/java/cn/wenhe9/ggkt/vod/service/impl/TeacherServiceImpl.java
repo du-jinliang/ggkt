@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
  * 讲师 服务实现类
  * </p>
  *
- * @author wenhe9
+ * @author DuJinliang
  * @since 2022-08-14
  */
 @Service
