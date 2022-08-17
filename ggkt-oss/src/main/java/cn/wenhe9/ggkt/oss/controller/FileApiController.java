@@ -30,7 +30,7 @@ public class FileApiController {
      * @return ResultResponse
      */
     @ApiOperation("上传文件到七牛云oss")
-    @PostMapping("/fileUpload")
+    @PostMapping("/upload")
     public ResultResponse fileUpload(MultipartFile file, HttpServletRequest request){
         //获取上传文件
         return fileService.upload(file, request);

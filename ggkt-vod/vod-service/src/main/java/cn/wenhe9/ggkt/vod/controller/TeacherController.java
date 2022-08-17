@@ -23,7 +23,6 @@ import java.util.Set;
  * @author wenhe9
  * @since 2022-08-14
  */
-@CrossOrigin
 @RestController
 @Api(tags = "讲师管理接口")
 @RequestMapping("/admin/vod/teacher")

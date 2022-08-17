@@ -13,7 +13,6 @@ import java.util.Map;
  * @author DuJinliang
  * 2022/08/16
  */
-@CrossOrigin
 @RestController
 @Api(tags = "管理员登陆接口")
 @RequestMapping("/admin/vod/user")

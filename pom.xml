@@ -10,6 +10,7 @@
         <module>ggkt-vod</module>
         <module>ggkt-monitor</module>
         <module>ggkt-oss</module>
+        <module>ggkt-gateway</module>
     </modules>
     <name>ggkt_parent</name>
     <description>ggkt_parent</description>
