@@ -23,9 +23,8 @@ import java.util.List;
  * @author DuJinliang
  * @since 2022-08-17
  */
-@Slf4j
 @RestController
-@Api(tags = "课程科目管理接口")
+@Api(tags = "科目管理接口")
 @RequestMapping("/admin/vod/subject")
 public class SubjectController {
     @Resource
@@ -57,10 +56,7 @@ public class SubjectController {
     @ApiOperation("课程分类导入")
     @PostMapping("/import")
     public ResultResponse<Void> importData(MultipartFile file) {
-        long start = System.currentTimeMillis();
         subjectService.importData(file);
-        long end = System.currentTimeMillis();
-        log.info("花费时间为{}", end - start);
         return ResultResponse.success();
     }
 }

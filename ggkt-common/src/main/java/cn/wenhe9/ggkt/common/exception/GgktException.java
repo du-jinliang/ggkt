@@ -1,4 +1,4 @@
-package cn.wenhe9.ggkt.exception;
+package cn.wenhe9.ggkt.common.exception;
 
 import cn.wenhe9.ggkt.common.result.ResultResponse;
 import cn.wenhe9.ggkt.common.result.ResultResponseEnum;

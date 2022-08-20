@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ConcurrentLinkedDeque;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author DuJinliang

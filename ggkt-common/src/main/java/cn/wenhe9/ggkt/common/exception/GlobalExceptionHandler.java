@@ -1,9 +1,8 @@
-package cn.wenhe9.ggkt.exception;
+package cn.wenhe9.ggkt.common.exception;
 
 import cn.wenhe9.ggkt.common.result.ResultResponse;
 import cn.wenhe9.ggkt.common.result.ResultResponseEnum;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -21,6 +20,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = {GgktException.class})
     public ResultResponse<Void> handlerMemException(GgktException e){
+        e.printStackTrace();
         StackTraceElement stackTraceElement = e.getStackTrace()[0];
         //打印异常信息
         log.error(
@@ -38,6 +38,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = {Throwable.class})
     public ResultResponse handlerException(Throwable e) {
+        e.printStackTrace();
         StackTraceElement stackTraceElement = e.getStackTrace()[0];
         //打印异常信息
         log.error(

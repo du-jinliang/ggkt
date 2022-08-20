@@ -3,3 +3,10 @@ spring:
     name: ggkt-vod
   profiles:
     active: dev
+  cloud:
+    nacos:
+      config:
+        extension-configs:
+          - data-id: ggkt-vod.yml
+            group: ggkt-common
+            refresh: true

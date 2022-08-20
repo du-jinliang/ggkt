@@ -15,3 +15,9 @@ mybatis-plus:
       logic-delete-field: isDelete
       logic-not-delete-value: 0
       logic-delete-value: 1
+# 线程池相关参数配置
+wenhe9:
+  thread:
+    core-size: 5
+    max-size: 9
+    keep-alive-time: 10
