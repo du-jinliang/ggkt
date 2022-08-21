@@ -12,6 +12,8 @@
         <module>ggkt-oss</module>
         <module>ggkt-gateway</module>
         <module>ggkt-order</module>
+        <module>ggkt-activity</module>
+        <module>ggkt-user</module>
     </modules>
     <name>ggkt_parent</name>
     <description>ggkt_parent</description>

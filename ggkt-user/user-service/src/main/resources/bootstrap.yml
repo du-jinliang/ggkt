@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: ggkt-user
+  profiles:
+    active: dev
