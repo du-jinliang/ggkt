@@ -11,6 +11,7 @@ import cn.wenhe9.ggkt.vod.service.*;
 import cn.wenhe9.ggkt.vod.vo.CourseFormVo;
 import cn.wenhe9.ggkt.vod.vo.CoursePublishVo;
 import cn.wenhe9.ggkt.vod.vo.CourseQueryVo;
+import cn.wenhe9.ggkt.vod.vo.CourseVo;
 import com.alibaba.excel.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -55,25 +56,11 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
     @Override
     public Map<String , Object> findPageCourse(long current, long limit, CourseQueryVo courseQueryVo) {
-        String title = courseQueryVo.getTitle();
-        Long subjectId = courseQueryVo.getSubjectId();
-        Long subjectParentId = courseQueryVo.getSubjectParentId();
-        Long teacherId = courseQueryVo.getTeacherId();
+        Page<CourseVo> courseVoPage = baseMapper.selectCourseVoById(new Page<>(current, limit), courseQueryVo);
 
-        LambdaQueryWrapper<Course> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper
-                .like(!StringUtils.isEmpty(title), Course::getTitle, title)
-                .eq(!StringUtils.isEmpty(subjectId), Course::getSubjectId, subjectId)
-                .eq(!StringUtils.isEmpty(subjectParentId), Course::getSubjectParentId, subjectParentId)
-                .eq(!StringUtils.isEmpty(teacherId), Course::getTeacherId, teacherId);
-
-        Page<Course> coursePage = this.page(new Page<>(current, limit), queryWrapper);
-
-        long totalCount = coursePage.getTotal();
-        long totalPage = coursePage.getPages();
-        List<Course> list = coursePage.getRecords();
-
-        list.forEach(this::getNameById);
+        long totalCount = courseVoPage.getTotal();
+        long totalPage = courseVoPage.getPages();
+        List<CourseVo> list = courseVoPage.getRecords();
 
         Map<String , Object> map = new HashMap<>();
         map.put("totalCount", totalCount);
@@ -172,24 +159,5 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
             //根据课程id删除课程
             this.removeById(id);
         }, executor);
-    }
-
-    private void getNameById(Course course) {
-        Teacher teacher = teacherService.getById(course.getTeacherId());
-        Map<String, Object> param = course.getParam();
-        if (null != teacher) {
-            String name = teacher.getName();
-            param.put("name", name);
-        }
-
-        Subject subjectOne = subjectService.getById(course.getSubjectId());
-        if(null != subjectOne) {
-            param.put("subjectParentTitle", subjectOne.getTitle());
-        }
-
-        Subject subjectTwo = subjectService.getById(course.getSubjectId());
-        if (null != subjectTwo) {
-            param.put("subjectTitle", subjectTwo.getTitle());
-        }
     }
 }

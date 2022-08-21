@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wenhe9.ggkt.order.mapper.OrderInfoMapper">
+
+    <select id="queryAllByPage" resultType="cn.wenhe9.ggkt.order.vo.OrderInfoListVo">
+        select
+        i.id,
+        i.nick_name as nickName,
+        i.phone,
+        i.final_amount as finalAmount,
+        i.order_status as orderStatus,
+        i.out_trade_no as outTradeNo,
+        i.create_time as createTime,
+        i.pay_time as payTime,
+        d.course_name as courseName
+        from `order_info` as i
+        left join `order_detail` as d
+        on i.id = d.order_id
+        <where>
+            <if test="queryVo.userId != null and queryVo.userId != ''">
+                and i.user_id = #{queryVo.userId}
+            </if>
+            <if test="queryVo.outTradeNo != null and queryVo.outTradeNo != ''">
+                and i.out_trade_no = #{queryVo.outTradeNo}
+            </if>
+            <if test="queryVo.phone != null and queryVo.phone != ''">
+                and i.phone = #{queryVo.phone}
+            </if>
+            <if test="queryVo.orderStatus != null">
+                and i.order_status = #{queryVo.orderStatus}
+            </if>
+            <if test="queryVo.createTimeBegin != null and queryVo.createTimeBegin != ''">
+                and DATE(i.create_time) &gt;= #{queryVo.createTimeBegin}
+            </if>
+            <if test="queryVo.createTimeBegin != null and queryVo.createTimeBegin != ''">
+                and DATE(i.create_time) &lt;= #{queryVo.createTimeBegin}
+            </if>
+        </where>
+    </select>
+
+</mapper>

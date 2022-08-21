@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: ggkt-order
+  profiles:
+    active: dev
