@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: ggkt-wechat
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        extension-configs:
+          - data-id: ggkt-wechat.yml
+            group: ggkt-common
+            refresh: true

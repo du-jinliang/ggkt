@@ -1,6 +1,6 @@
 package cn.wenhe9.ggkt.activity.feign;
 
-import cn.wenhe9.ggkt.user.api.UserApi;
+import cn.wenhe9.ggkt.user.api.UserInfoApi;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
  * 2022/08/21
  */
 @Component
-@FeignClient(value = "ggkt-user", path = "/admin/user/userInfo")
-public interface UserFeignClient extends UserApi {
+@FeignClient(value = "ggkt-user", path = "/api/user/userInfo")
+public interface UserInfoFeignClient extends UserInfoApi {
 }

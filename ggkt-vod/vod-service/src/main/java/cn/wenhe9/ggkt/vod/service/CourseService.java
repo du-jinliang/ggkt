@@ -8,6 +8,7 @@ import cn.wenhe9.ggkt.vod.vo.CourseQueryVo;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,4 +55,9 @@ public interface CourseService extends IService<Course> {
      * 根据id删除课程
      */
     void removeCourseById(long id);
+
+    /**
+     * 根据关键字查询课程
+     */
+    List<Course> findCourseByKeyword(String keyword);
 }

@@ -160,4 +160,11 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
             this.removeById(id);
         }, executor);
     }
+
+    @Override
+    public List<Course> findCourseByKeyword(String keyword) {
+        LambdaQueryWrapper<Course> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.like(Course::getTitle, keyword);
+        return this.list(queryWrapper);
+    }
 }

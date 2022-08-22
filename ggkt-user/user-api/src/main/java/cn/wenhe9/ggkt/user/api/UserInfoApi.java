@@ -1,7 +1,6 @@
 package cn.wenhe9.ggkt.user.api;
 
 import cn.wenhe9.ggkt.user.entity.UserInfo;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author DuJinliang
  * 2022/08/21
  */
-public interface UserApi {
+public interface UserInfoApi {
     /**
      * 根据id获取用户信息
      */

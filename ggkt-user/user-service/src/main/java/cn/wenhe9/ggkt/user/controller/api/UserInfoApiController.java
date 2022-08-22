@@ -1,4 +1,4 @@
-package cn.wenhe9.ggkt.user.controller;
+package cn.wenhe9.ggkt.user.controller.api;
 
 
 import cn.wenhe9.ggkt.user.entity.UserInfo;
@@ -21,10 +21,10 @@ import javax.annotation.Resource;
  * @author DuJinliang
  * @since 2022-08-21
  */
-@Api(tags = "用户信息管理接口")
+@Api(tags = "用户信息内部管理接口")
 @RestController
-@RequestMapping("/admin/user/userInfo")
-public class UserInfoController {
+@RequestMapping("/api/user/userInfo")
+public class UserInfoApiController {
     @Resource
     private UserInfoService userInfoService;
 

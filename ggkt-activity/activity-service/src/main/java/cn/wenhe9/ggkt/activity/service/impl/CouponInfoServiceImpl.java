@@ -2,15 +2,13 @@ package cn.wenhe9.ggkt.activity.service.impl;
 
 import cn.wenhe9.ggkt.activity.entity.CouponInfo;
 import cn.wenhe9.ggkt.activity.entity.CouponUse;
-import cn.wenhe9.ggkt.activity.feign.UserFeignClient;
+import cn.wenhe9.ggkt.activity.feign.UserInfoFeignClient;
 import cn.wenhe9.ggkt.activity.mapper.CouponInfoMapper;
 import cn.wenhe9.ggkt.activity.service.CouponInfoService;
 import cn.wenhe9.ggkt.activity.service.CouponUseService;
 import cn.wenhe9.ggkt.activity.vo.CouponUseQueryVo;
 import cn.wenhe9.ggkt.user.entity.UserInfo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -34,7 +32,7 @@ public class CouponInfoServiceImpl extends ServiceImpl<CouponInfoMapper, CouponI
     private CouponUseService couponUseService;
 
     @Resource
-    private UserFeignClient userFeignClient;
+    private UserInfoFeignClient userFeignClient;
 
     @Override
     public Page<CouponUse> selectCouponUsePage(Long current, Long limit, CouponUseQueryVo couponUseQueryVo) {

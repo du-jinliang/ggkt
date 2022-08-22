@@ -38,14 +38,15 @@ public enum ResultResponseEnum {
     IMPORT_DATA_ERROR(21003, "导入失败"),
 
     FILE_UPLOAD_ERROR( 21004, "文件上传错误"),
-
     FILE_DELETE_ERROR( 21005, "文件刪除错误"),
 
     COURSE_NOT_FOUND(21006, "课程没有找到"),
-
     SIGN_GET_ERROR(21007, "获取签名失败"),
+    GET_ACCESS_TOKEN_ERROR(21008, "获取accessToken失败"),
 
-    VOD_PALY_ERROR(209, "请购买后观看"),;
+    SYNC_MENU_ERROR(21009, "同步菜单失败"),
+
+    VOD_PALY_ERROR(209, "请购买后观看");
 
 
     /**
