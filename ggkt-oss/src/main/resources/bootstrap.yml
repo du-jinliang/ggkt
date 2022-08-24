@@ -2,7 +2,9 @@ spring:
   application:
     name: ggkt-oss
   profiles:
-    active: dev
+    active:
+      - dev
+      - secret
   cloud:
     nacos:
       config:

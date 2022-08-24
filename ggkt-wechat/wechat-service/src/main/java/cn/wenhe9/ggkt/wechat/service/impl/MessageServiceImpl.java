@@ -88,7 +88,7 @@ public class MessageServiceImpl implements MessageService {
         WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder()
                 .toUser(openid)//要推送的用户openid
                 .templateId("vZ4QM9ZhWDbrZqWuLEsRJXnBrbZ37u56HTd50txNMRs")//模板id
-                .url("http://ggkt2.vipgz1.91tunnel.com/#/pay/"+id)//点击模板消息要访问的网址
+                .url("http://mobile.wenhe9.cn/#/pay/"+id)//点击模板消息要访问的网址
                 .build();
         //3,如果是正式版发送消息，，这里需要配置你的信息
         templateMessage.addData(new WxMpTemplateData("first", "亲爱的用户：您有一笔订单支付成功。", "#272727"));

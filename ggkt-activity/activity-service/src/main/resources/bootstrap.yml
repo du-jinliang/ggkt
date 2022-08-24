@@ -2,4 +2,6 @@ spring:
   application:
     name: ggkt-activity
   profiles:
-    active: dev
+    active:
+      - dev
+      - secret

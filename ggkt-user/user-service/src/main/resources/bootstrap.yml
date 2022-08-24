@@ -2,4 +2,13 @@ spring:
   application:
     name: ggkt-user
   profiles:
-    active: dev
+    active:
+      - dev
+      - secret
+  cloud:
+    nacos:
+      config:
+        extension-configs:
+          - data-id: ggkt-wechat.yml
+            group: ggkt-common
+            refresh: true

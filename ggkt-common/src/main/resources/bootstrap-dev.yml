@@ -2,7 +2,7 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 39.106.88.176:8849
+        server-addr: ${wenhe9.server.addr}:8849
         file-extension: yml
         group: ${spring.application.name}
-        namespace: 7c3678eb-dd51-46e4-afb5-05f885cd0c25
+        namespace: ${wenhe9.nacos.namespace}

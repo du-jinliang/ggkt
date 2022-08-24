@@ -2,4 +2,6 @@ spring:
   application:
     name: ggkt-order
   profiles:
-    active: dev
+    active:
+      - dev
+      - secret

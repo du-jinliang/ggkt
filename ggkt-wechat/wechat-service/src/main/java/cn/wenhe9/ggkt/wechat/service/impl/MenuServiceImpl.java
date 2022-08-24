@@ -131,7 +131,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
                 view.put("type", menuTwoVo.getType());
                 if("view".equals(menuTwoVo.getType())) {
                     view.put("name", menuTwoVo.getName());
-                    view.put("url", "http://ggkt2.vipgz1.91tunnel.com/#"
+                    view.put("url", "http://mobile.wenhe9.cn/#"
                             +menuTwoVo.getUrl());
                 } else {
                     view.put("name", menuTwoVo.getName());

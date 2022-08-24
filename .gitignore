@@ -28,3 +28,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### secret ###
+ggkt-common/src/main/resources/bootstrap-secret.yml
