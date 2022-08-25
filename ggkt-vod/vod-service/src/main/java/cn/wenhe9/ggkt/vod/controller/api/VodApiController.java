@@ -29,7 +29,7 @@ public class VodApiController {
      * 获取视频播放参数
      */
     @ApiOperation("获取视频播放参数")
-    @GetMapping("/palyAuth/{courseId}/{videoId}")
+    @GetMapping("/playAuth/{courseId}/{videoId}")
     public ResultResponse<Map<String, Object>> getPlayAuth(
             @PathVariable(name = "courseId") long courseId,
             @PathVariable(name = "videoId") long videoId

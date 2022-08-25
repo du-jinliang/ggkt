@@ -1,6 +1,7 @@
 package cn.wenhe9.ggkt.order.service;
 
 import cn.wenhe9.ggkt.order.entity.OrderInfo;
+import cn.wenhe9.ggkt.order.vo.OrderFormVo;
 import cn.wenhe9.ggkt.order.vo.OrderInfoQueryVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -20,4 +21,9 @@ public interface OrderInfoService extends IService<OrderInfo> {
      * 订单列表
      */
     Map<String, Object> getOrderInfoPage(long current, long limit, OrderInfoQueryVo orderInfoQueryVo);
+
+    /**
+     * 生成订单
+     */
+    Long submitOrder(OrderFormVo orderFormVo);
 }

@@ -17,4 +17,10 @@ public interface CourseApi {
      */
     @GetMapping("/inner/{keyword}")
     List<Course> findCourseByKeyword(@PathVariable(name = "keyword") String keyword);
+
+    /**
+     * 根据课程id查询课程信息
+     */
+    @GetMapping("/inner/{courseId}")
+    Course findCourseById(@PathVariable(name = "courseId") long courseId);
 }

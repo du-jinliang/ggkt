@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -57,6 +58,16 @@ public class CouponInfoServiceImpl extends ServiceImpl<CouponInfoMapper, CouponI
 
         return couponUsePage;
 
+    }
+
+    @Override
+    public void updateCouponInfoUseStatus(long couponUseId, long orderId) {
+        CouponUse couponUse = new CouponUse();
+        couponUse.setId(couponUseId);
+        couponUse.setOrderId(orderId);
+        couponUse.setCouponStatus("1");
+        couponUse.setUsingTime(new Date());
+        couponUseService.updateById(couponUse);
     }
 
     /**

@@ -4,6 +4,7 @@ import cn.wenhe9.ggkt.order.entity.OrderInfo;
 import cn.wenhe9.ggkt.order.mapper.OrderInfoMapper;
 import cn.wenhe9.ggkt.order.service.OrderDetailService;
 import cn.wenhe9.ggkt.order.service.OrderInfoService;
+import cn.wenhe9.ggkt.order.vo.OrderFormVo;
 import cn.wenhe9.ggkt.order.vo.OrderInfoListVo;
 import cn.wenhe9.ggkt.order.vo.OrderInfoQueryVo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -48,5 +49,25 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         map.put("records", records);
 
         return map;
+    }
+
+    @Override
+    public Long submitOrder(OrderFormVo orderFormVo) {
+        // 获取生成订单条件值
+
+        // 判断当前用户是否已经生成了订单
+
+        // 根据课程id查询课程信息
+
+        // 根据用户id查询用户信息
+
+        // 根据优惠卷id查询优惠卷信息
+
+        // 封装订单生成需要的数据到对象，完成添加订单
+
+        // 更新优惠卷状态
+
+        // 返回订单id
+        return null;
     }
 }

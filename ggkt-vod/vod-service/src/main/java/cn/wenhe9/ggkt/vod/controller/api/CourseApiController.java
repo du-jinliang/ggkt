@@ -29,6 +29,15 @@ public class CourseApiController {
     private CourseService courseService;
 
     /**
+     * 根据课程id查询课程信息
+     */
+    @ApiOperation("根据课程id查询课程信息")
+    @GetMapping("/inner/info/{courseId}")
+    public Course findCourseById(@PathVariable(name = "courseId") long courseId) {
+        return courseService.getById(courseId);
+    }
+
+    /**
      * 根据课程分类查询课程列表
      */
     @ApiOperation("根据课程分类查询课程列表")

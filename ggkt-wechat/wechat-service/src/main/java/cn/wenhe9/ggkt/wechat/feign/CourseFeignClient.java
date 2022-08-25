@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
  * 2022/08/22
  */
 @Component
-@FeignClient(value = "ggkt-vod", path = "/api/void/course")
+@FeignClient(value = "ggkt-vod", path = "/api/vod/course")
 public interface CourseFeignClient extends CourseApi {
 }
