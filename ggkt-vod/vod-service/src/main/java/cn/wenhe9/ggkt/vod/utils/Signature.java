@@ -15,6 +15,9 @@ public class Signature {
     private long currentTime;
     private int random;
     private int signValidDuration;
+
+    private String procedure;
+
     private static final String HMAC_ALGORITHM = "HmacSHA1"; //签名算法
     private static final String CONTENT_CHARSET = "UTF-8";
     public static byte[] byteMerger(byte[] byte1, byte[] byte2) {
@@ -33,6 +36,7 @@ public class Signature {
         contextStr += "&currentTimeStamp=" + currentTime;
         contextStr += "&expireTime=" + endTime;
         contextStr += "&random=" + random;
+        contextStr += "&procedure=" + procedure;
         try {
             Mac mac = Mac.getInstance(HMAC_ALGORITHM);
             SecretKeySpec secretKey = new SecretKeySpec(this.secretKey.getBytes(CONTENT_CHARSET), mac.getAlgorithm());
@@ -64,5 +68,8 @@ public class Signature {
     }
     public void setSignValidDuration(int signValidDuration) {
         this.signValidDuration = signValidDuration;
+    }
+    public void setProcedure(String procedure) {
+        this.procedure = procedure;
     }
 }

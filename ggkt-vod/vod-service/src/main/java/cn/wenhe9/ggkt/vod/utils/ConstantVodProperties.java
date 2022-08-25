@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConstantVodProperties implements InitializingBean {
 
+    @Value("${tecent.vod.appId}")
+    private String appId;
+
     @Value("${tecent.vod.accessKey}")
     private String accessKey;
 
@@ -23,6 +26,8 @@ public class ConstantVodProperties implements InitializingBean {
     @Value("${tecent.vod.region}")
     private String region;
 
+    public static String APP_ID;
+
     public static String ACCESS_KEY;
 
     public static String SECRET_KEY;
@@ -33,6 +38,7 @@ public class ConstantVodProperties implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        APP_ID = this.appId;
         ACCESS_KEY = this.accessKey;
         SECRET_KEY = this.secretKey;
         PROCEDURE = this.procedure;

@@ -36,7 +36,7 @@ public class ChapterController {
      */
     @ApiOperation("大纲列表")
     @GetMapping("/treeList/{courseId}")
-    public ResultResponse<List<ChapterVo>> getTreeList(@PathVariable(name = "courseId") long courseId) throws ExecutionException, InterruptedException {
+    public ResultResponse<List<ChapterVo>> getTreeList(@PathVariable(name = "courseId") long courseId) {
         List<ChapterVo> list = chapterService.getTreeList(courseId);
         return ResultResponse.success(list);
     }

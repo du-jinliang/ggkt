@@ -8,22 +8,20 @@ import cn.wenhe9.ggkt.vod.entity.Subject;
 import cn.wenhe9.ggkt.vod.entity.Teacher;
 import cn.wenhe9.ggkt.vod.mapper.CourseMapper;
 import cn.wenhe9.ggkt.vod.service.*;
-import cn.wenhe9.ggkt.vod.vo.CourseFormVo;
-import cn.wenhe9.ggkt.vod.vo.CoursePublishVo;
-import cn.wenhe9.ggkt.vod.vo.CourseQueryVo;
-import cn.wenhe9.ggkt.vod.vo.CourseVo;
-import com.alibaba.excel.util.StringUtils;
+import cn.wenhe9.ggkt.vod.vo.*;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.function.Function;
 
 /**
  * <p>
@@ -56,7 +54,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
     @Override
     public Map<String , Object> findPageCourse(long current, long limit, CourseQueryVo courseQueryVo) {
-        Page<CourseVo> courseVoPage = baseMapper.selectCourseVoById(new Page<>(current, limit), courseQueryVo);
+        Page<CourseVo> courseVoPage = baseMapper.selectCourseVo(new Page<>(current, limit), courseQueryVo);
 
         long totalCount = courseVoPage.getTotal();
         long totalPage = courseVoPage.getPages();
@@ -166,5 +164,66 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         LambdaQueryWrapper<Course> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.like(Course::getTitle, keyword);
         return this.list(queryWrapper);
+    }
+
+    @Override
+    public Page<CourseVo> findCourseByCategory(long subjectParentId, long current, long limit) {
+        CourseQueryVo courseQueryVo = new CourseQueryVo();
+        courseQueryVo.setSubjectParentId(subjectParentId);
+        return baseMapper.selectCourseVo(new Page<>(current, limit), courseQueryVo);
+    }
+
+    @Override
+    public Map<String, Object> findCourseInfoByCourseId(long courseId) {
+        try {
+            //view_count 浏览数量+1
+            CompletableFuture<Course> courseFuture = CompletableFuture.supplyAsync(() -> {
+                return this.getById(courseId);
+            }, executor);
+
+            Course course = courseFuture.get();
+
+            CompletableFuture<Void> updateAsync = CompletableFuture.runAsync(() -> {
+                course.setViewCount(course.getViewCount() + 1);
+                this.updateById(course);
+            }, executor);
+            // 根据课程id查询
+            // 课程详情信息
+            CompletableFuture<CourseVo> courseVoFuture = CompletableFuture.supplyAsync(() -> {
+                return baseMapper.selectCourseVoById(courseId);
+            }, executor);
+            // 课程章节信息
+            CompletableFuture<List<ChapterVo>> chapterVoFuture = CompletableFuture.supplyAsync(() -> {
+                return chapterService.getTreeList(courseId);
+            }, executor);
+            // 课程描述信息
+            CompletableFuture<CourseDescription> descriptionFuture = CompletableFuture.supplyAsync(() -> {
+                return descriptionService.getById(courseId);
+            }, executor);
+            // 课程所属讲师信息
+            CompletableFuture<Teacher> teacherFuture = CompletableFuture.supplyAsync(() -> {
+                return teacherService.getById(course.getTeacherId());
+            }, executor);
+
+            CompletableFuture<Void> allOffuture = CompletableFuture.allOf(courseVoFuture, chapterVoFuture, descriptionFuture, teacherFuture);
+            allOffuture.get();
+
+            CourseVo courseVo = courseVoFuture.get();
+            List<ChapterVo> chapterVoList = chapterVoFuture.get();
+            CourseDescription courseDescription = descriptionFuture.get();
+            Teacher teacher = teacherFuture.get();
+
+            //封装map集合返回
+            Map<String, Object> map = new HashMap<>();
+            map.put("courseVo", courseVo);
+            map.put("chapterVoList", chapterVoList);
+            map.put("description", null != courseDescription ? courseDescription.getDescription() : "");
+            map.put("teacher", teacher);
+            map.put("isBuy", false);
+
+            return map;
+        } catch (Exception e) {
+            throw new GgktException(ResultResponseEnum.COURSE_NOT_FOUND);
+        }
     }
 }

@@ -1,10 +1,7 @@
 package cn.wenhe9.ggkt.vod.service;
 
 import cn.wenhe9.ggkt.vod.entity.Course;
-import cn.wenhe9.ggkt.vod.vo.CourseFormVo;
-import cn.wenhe9.ggkt.vod.vo.CourseProgressVo;
-import cn.wenhe9.ggkt.vod.vo.CoursePublishVo;
-import cn.wenhe9.ggkt.vod.vo.CourseQueryVo;
+import cn.wenhe9.ggkt.vod.vo.*;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -60,4 +57,14 @@ public interface CourseService extends IService<Course> {
      * 根据关键字查询课程
      */
     List<Course> findCourseByKeyword(String keyword);
+
+    /**
+     * 根据课程分类查询课程列表
+     */
+    Page<CourseVo> findCourseByCategory(long subjectParentId, long current, long limit);
+
+    /**
+     * 根据课程id查询课程详情
+     */
+    Map<String, Object> findCourseInfoByCourseId(long courseId);
 }

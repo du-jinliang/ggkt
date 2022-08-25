@@ -46,6 +46,10 @@ public enum ResultResponseEnum {
 
     SYNC_MENU_ERROR(21009, "同步菜单失败"),
 
+    CHAPTER_NOT_FOUND(21010, "获取章节失败"),
+
+    VIDEO_NOT_FOUND(21011, "获取小节失败"),
+
     VOD_PALY_ERROR(209, "请购买后观看");
 
 

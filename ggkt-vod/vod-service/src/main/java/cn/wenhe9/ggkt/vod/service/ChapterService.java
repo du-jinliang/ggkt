@@ -20,7 +20,7 @@ public interface ChapterService extends IService<Chapter> {
     /**
      * 大纲列表 （章节和小节列表）
      */
-    List<ChapterVo> getTreeList(long courseId) throws ExecutionException, InterruptedException;
+    List<ChapterVo> getTreeList(long courseId);
 
     /**
      * 根据课程id删除章节

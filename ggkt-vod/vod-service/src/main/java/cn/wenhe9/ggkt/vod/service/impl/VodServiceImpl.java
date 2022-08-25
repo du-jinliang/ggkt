@@ -2,6 +2,8 @@ package cn.wenhe9.ggkt.vod.service.impl;
 
 import cn.wenhe9.ggkt.common.exception.GgktException;
 import cn.wenhe9.ggkt.common.result.ResultResponseEnum;
+import cn.wenhe9.ggkt.vod.entity.Video;
+import cn.wenhe9.ggkt.vod.service.VideoService;
 import cn.wenhe9.ggkt.vod.utils.ConstantVodProperties;
 import cn.wenhe9.ggkt.vod.service.VodService;
 import cn.wenhe9.ggkt.vod.utils.Signature;
@@ -17,6 +19,9 @@ import com.tencentcloudapi.vod.v20180717.models.DeleteMediaRequest;
 import com.tencentcloudapi.vod.v20180717.models.DeleteMediaResponse;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -25,6 +30,9 @@ import java.util.Random;
  */
 @Service
 public class VodServiceImpl implements VodService {
+
+    @Resource
+    private VideoService videoService;
 
     @Override
     public void removeVideoById(String id) {
@@ -56,6 +64,7 @@ public class VodServiceImpl implements VodService {
         sign.setSecretKey(ConstantVodProperties.SECRET_KEY);
         sign.setCurrentTime(System.currentTimeMillis() / 1000);
         sign.setRandom(new Random().nextInt(java.lang.Integer.MAX_VALUE));
+        sign.setProcedure(ConstantVodProperties.PROCEDURE);
         // 签名有效期：2天
         sign.setSignValidDuration(3600 * 24 * 2);
         try {
@@ -63,5 +72,20 @@ public class VodServiceImpl implements VodService {
         } catch (Exception e) {
             throw new GgktException(ResultResponseEnum.SIGN_GET_ERROR);
         }
+    }
+
+    @Override
+    public Map<String, Object> getPlayAuth(long courseId, long videoId) {
+        // 根据小节id获取小节对象，获取腾讯云视频id
+        Video video = videoService.getById(videoId);
+        if (null == video) {
+            throw new GgktException(ResultResponseEnum.VIDEO_NOT_FOUND);
+        }
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("videoSourceId",video.getVideoSourceId());
+        map.put("appId", ConstantVodProperties.APP_ID);
+
+        return map;
     }
 }

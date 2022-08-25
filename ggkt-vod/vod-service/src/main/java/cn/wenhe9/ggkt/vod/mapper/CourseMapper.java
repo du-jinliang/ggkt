@@ -18,10 +18,18 @@ import org.apache.ibatis.annotations.Param;
  * @since 2022-08-18
  */
 public interface CourseMapper extends BaseMapper<Course> {
-    Page<CourseVo> selectCourseVoById(Page<CourseVo> pageParam, @Param("queryVo") CourseQueryVo queryVo);
+    /**
+     * 多条件查询课程
+     */
+    Page<CourseVo> selectCourseVo(Page<CourseVo> pageParam, @Param("queryVo") CourseQueryVo queryVo);
 
     /**
      * 根据课程id查询发布课程信息
      */
     CoursePublishVo selectCoursePublishVoById(@Param("id") long id);
+
+    /**
+     * 根据课程id查询课程信息
+     */
+    CourseVo selectCourseVoById(long courseId);
 }

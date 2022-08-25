@@ -1,5 +1,7 @@
 package cn.wenhe9.ggkt.vod.service.impl;
 
+import cn.wenhe9.ggkt.common.exception.GgktException;
+import cn.wenhe9.ggkt.common.result.ResultResponseEnum;
 import cn.wenhe9.ggkt.vod.entity.Chapter;
 import cn.wenhe9.ggkt.vod.entity.Video;
 import cn.wenhe9.ggkt.vod.mapper.ChapterMapper;
@@ -40,46 +42,50 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> impl
     private VideoService videoService;
 
     @Override
-    public List<ChapterVo> getTreeList(long courseId) throws ExecutionException, InterruptedException {
-        List<ChapterVo> chapterVoList = new ArrayList<>();
+    public List<ChapterVo> getTreeList(long courseId)  {
+        try {
+            List<ChapterVo> chapterVoList = new ArrayList<>();
 
-        CompletableFuture<List<Chapter>> chapterFuture = CompletableFuture.supplyAsync(() -> {
-            LambdaQueryWrapper<Chapter> wrapperChapter = new LambdaQueryWrapper<>();
-            wrapperChapter.eq(Chapter::getCourseId, courseId);
-            return this.list(wrapperChapter);
-        }, executor);
+            CompletableFuture<List<Chapter>> chapterFuture = CompletableFuture.supplyAsync(() -> {
+                LambdaQueryWrapper<Chapter> wrapperChapter = new LambdaQueryWrapper<>();
+                wrapperChapter.eq(Chapter::getCourseId, courseId);
+                return this.list(wrapperChapter);
+            }, executor);
 
-        CompletableFuture<List<Video>> videoFuture = CompletableFuture.supplyAsync(() -> {
-            LambdaQueryWrapper<Video> wrapperVideo = new LambdaQueryWrapper<>();
-            wrapperVideo.eq(Video::getCourseId, courseId);
-            return videoService.list(wrapperVideo);
-        }, executor);
+            CompletableFuture<List<Video>> videoFuture = CompletableFuture.supplyAsync(() -> {
+                LambdaQueryWrapper<Video> wrapperVideo = new LambdaQueryWrapper<>();
+                wrapperVideo.eq(Video::getCourseId, courseId);
+                return videoService.list(wrapperVideo);
+            }, executor);
 
-        CompletableFuture<Void> allOfFuture = CompletableFuture.allOf(chapterFuture, videoFuture);
-        allOfFuture.get();
+            CompletableFuture<Void> allOfFuture = CompletableFuture.allOf(chapterFuture, videoFuture);
+            allOfFuture.get();
 
-        List<Chapter> chapterList = chapterFuture.get();
-        List<Video> videoList = videoFuture.get();
+            List<Chapter> chapterList = chapterFuture.get();
+            List<Video> videoList = videoFuture.get();
 
-        chapterList.forEach(item -> {
-            ChapterVo chapterVo = new ChapterVo();
-            BeanUtils.copyProperties(item, chapterVo);
+            chapterList.forEach(item -> {
+                ChapterVo chapterVo = new ChapterVo();
+                BeanUtils.copyProperties(item, chapterVo);
 
-            chapterVoList.add(chapterVo);
+                chapterVoList.add(chapterVo);
 
-            List<VideoVo> videoVoList = videoList.stream()
-                    .filter(video -> video.getChapterId().equals(item.getId()))
-                    .map(temp -> {
-                        VideoVo videoVo = new VideoVo();
-                        BeanUtils.copyProperties(temp, videoVo);
-                        return videoVo;
-                    })
-                    .collect(Collectors.toList());
+                List<VideoVo> videoVoList = videoList.stream()
+                        .filter(video -> video.getChapterId().equals(item.getId()))
+                        .map(temp -> {
+                            VideoVo videoVo = new VideoVo();
+                            BeanUtils.copyProperties(temp, videoVo);
+                            return videoVo;
+                        })
+                        .collect(Collectors.toList());
 
-            chapterVo.setChildren(videoVoList);
-        });
+                chapterVo.setChildren(videoVoList);
+            });
 
-        return chapterVoList;
+            return chapterVoList;
+        } catch (Exception e) {
+            throw new GgktException(ResultResponseEnum.CHAPTER_NOT_FOUND);
+        }
     }
 
     @Override
