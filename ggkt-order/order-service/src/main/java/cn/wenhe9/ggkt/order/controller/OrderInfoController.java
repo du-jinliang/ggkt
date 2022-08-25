@@ -2,9 +2,11 @@ package cn.wenhe9.ggkt.order.controller;
 
 
 import cn.wenhe9.ggkt.common.result.ResultResponse;
+import cn.wenhe9.ggkt.order.entity.OrderInfo;
 import cn.wenhe9.ggkt.order.service.OrderDetailService;
 import cn.wenhe9.ggkt.order.service.OrderInfoService;
 import cn.wenhe9.ggkt.order.vo.OrderInfoQueryVo;
+import cn.wenhe9.ggkt.order.vo.OrderInfoVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +45,16 @@ public class OrderInfoController {
     ) {
         Map<String, Object> map = orderInfoService.getOrderInfoPage(current, limit, orderInfoQueryVo);
         return ResultResponse.success(map);
+    }
+
+    /**
+     * 根据订单号获取订单信息
+     */
+    @ApiOperation("根据订单号获取订单信息")
+    @GetMapping("/info/{id}")
+    public ResultResponse<OrderInfoVo> findOrderInfoById(@PathVariable(name = "id") long id) {
+        OrderInfoVo orderInfoVo = orderInfoService.findOrderInfoById(id);
+        return ResultResponse.success(orderInfoVo);
     }
 }
 

@@ -50,6 +50,16 @@ public enum ResultResponseEnum {
 
     VIDEO_NOT_FOUND(21011, "获取小节失败"),
 
+    USER_NOT_EXIST(21012, "用户不存在"),
+
+    COUPON_NOT_FOUND(21013, "忧患卷不存在"),
+
+    SUBMIT_ORDER_ERROR(21014, "生成订单失败"),
+
+    PAY_ERROR(21015, "支付失败"),
+
+    QUERY_PAY_STATUS_ERROR(21016, "支付状态查询失败"),
+
     VOD_PALY_ERROR(209, "请购买后观看");
 
 
