@@ -1,7 +1,6 @@
 package cn.wenhe9.ggkt.vod.mapper;
 
 import cn.wenhe9.ggkt.vod.entity.Course;
-import cn.wenhe9.ggkt.vod.vo.CourseProgressVo;
 import cn.wenhe9.ggkt.vod.vo.CoursePublishVo;
 import cn.wenhe9.ggkt.vod.vo.CourseQueryVo;
 import cn.wenhe9.ggkt.vod.vo.CourseVo;

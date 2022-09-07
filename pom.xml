@@ -15,6 +15,7 @@
         <module>ggkt-activity</module>
         <module>ggkt-user</module>
         <module>ggkt-wechat</module>
+        <module>ggkt-live</module>
     </modules>
     <name>ggkt_parent</name>
     <description>ggkt_parent</description>

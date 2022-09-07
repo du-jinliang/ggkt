@@ -4,7 +4,6 @@ import cn.wenhe9.ggkt.vod.entity.VideoVisitor;
 import cn.wenhe9.ggkt.vod.mapper.VideoVisitorMapper;
 import cn.wenhe9.ggkt.vod.service.VideoVisitorService;
 import cn.wenhe9.ggkt.vod.vo.VideoVisitorCountVo;
-import cn.wenhe9.ggkt.vod.vo.VideoVisitorVo;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

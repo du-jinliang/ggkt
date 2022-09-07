@@ -4,7 +4,6 @@ import cn.wenhe9.ggkt.common.result.ResultResponseEnum;
 import cn.wenhe9.ggkt.common.exception.GgktException;
 import cn.wenhe9.ggkt.vod.entity.Course;
 import cn.wenhe9.ggkt.vod.entity.CourseDescription;
-import cn.wenhe9.ggkt.vod.entity.Subject;
 import cn.wenhe9.ggkt.vod.entity.Teacher;
 import cn.wenhe9.ggkt.vod.mapper.CourseMapper;
 import cn.wenhe9.ggkt.vod.service.*;
@@ -15,13 +14,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.function.Function;
 
 /**
  * <p>

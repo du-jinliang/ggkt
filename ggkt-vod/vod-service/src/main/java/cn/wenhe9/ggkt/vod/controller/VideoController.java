@@ -2,7 +2,6 @@ package cn.wenhe9.ggkt.vod.controller;
 
 
 import cn.wenhe9.ggkt.common.result.ResultResponse;
-import cn.wenhe9.ggkt.vod.entity.Chapter;
 import cn.wenhe9.ggkt.vod.entity.Video;
 import cn.wenhe9.ggkt.vod.service.VideoService;
 import io.swagger.annotations.Api;

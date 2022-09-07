@@ -60,6 +60,14 @@ public enum ResultResponseEnum {
 
     QUERY_PAY_STATUS_ERROR(21016, "支付状态查询失败"),
 
+    LIVE_SAVE_ERROR(21017, "直播添加失败"),
+
+    LIVE_COURSE_REMOVE_ERROR(21017, "直播删除失败"),
+
+    LIVE_COURSE_UPDATE_ERROR(21018, "修改直播课程失败"),
+
+    LIVE_COURSE_CONFIG_UPDATE_ERROR(21019, "修改直播课程配置失败"),
+
     VOD_PALY_ERROR(209, "请购买后观看");
 
 

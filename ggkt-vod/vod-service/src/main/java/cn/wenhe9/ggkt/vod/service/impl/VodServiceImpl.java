@@ -7,16 +7,11 @@ import cn.wenhe9.ggkt.vod.service.VideoService;
 import cn.wenhe9.ggkt.vod.utils.ConstantVodProperties;
 import cn.wenhe9.ggkt.vod.service.VodService;
 import cn.wenhe9.ggkt.vod.utils.Signature;
-import com.qcloud.vod.VodUploadClient;
-import com.qcloud.vod.model.VodUploadRequest;
-import com.qcloud.vod.model.VodUploadResponse;
 import com.tencentcloudapi.common.Credential;
-import com.tencentcloudapi.common.exception.TencentCloudSDKException;
 import com.tencentcloudapi.common.profile.ClientProfile;
 import com.tencentcloudapi.common.profile.HttpProfile;
 import com.tencentcloudapi.vod.v20180717.VodClient;
 import com.tencentcloudapi.vod.v20180717.models.DeleteMediaRequest;
-import com.tencentcloudapi.vod.v20180717.models.DeleteMediaResponse;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

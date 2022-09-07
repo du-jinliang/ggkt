@@ -4,17 +4,13 @@ package cn.wenhe9.ggkt.vod.controller;
 import cn.wenhe9.ggkt.common.result.ResultResponse;
 import cn.wenhe9.ggkt.vod.entity.Chapter;
 import cn.wenhe9.ggkt.vod.service.ChapterService;
-import cn.wenhe9.ggkt.vod.service.impl.ChapterServiceImpl;
 import cn.wenhe9.ggkt.vod.vo.ChapterVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * <p>

@@ -2,20 +2,15 @@ package cn.wenhe9.ggkt.vod.controller;
 
 
 import cn.wenhe9.ggkt.common.result.ResultResponse;
-import cn.wenhe9.ggkt.common.result.ResultResponseEnum;
-import cn.wenhe9.ggkt.vod.entity.Course;
 import cn.wenhe9.ggkt.vod.service.CourseService;
 import cn.wenhe9.ggkt.vod.vo.CourseFormVo;
-import cn.wenhe9.ggkt.vod.vo.CourseProgressVo;
 import cn.wenhe9.ggkt.vod.vo.CoursePublishVo;
 import cn.wenhe9.ggkt.vod.vo.CourseQueryVo;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 import java.util.Map;
 
 /**

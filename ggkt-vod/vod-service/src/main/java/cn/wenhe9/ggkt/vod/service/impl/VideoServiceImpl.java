@@ -1,6 +1,5 @@
 package cn.wenhe9.ggkt.vod.service.impl;
 
-import cn.wenhe9.ggkt.vod.entity.Chapter;
 import cn.wenhe9.ggkt.vod.entity.Video;
 import cn.wenhe9.ggkt.vod.mapper.VideoMapper;
 import cn.wenhe9.ggkt.vod.service.VideoService;

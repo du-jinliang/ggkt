@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wenhe9.ggkt.live.mapper.LiveCourseMapper">
+
+    <select id="findLatelyLiveCourseList" resultType="cn.wenhe9.ggkt.live.vo.LiveCourseVo">
+        select
+            DATE_FORMAT(`start_time`, '%Y年%m月%d日 %H:%i') as startTimeString,
+            DATE_FORMAT(`end_time`, '%H:%i') as endTimeString,
+            (
+                CASE
+                when DATE(`start_time`) &lt; NOW() then
+                    '0'
+                when DATE(`start_time`) &gt; NOW() and DATE(`end_time`) &lt; NOW() then
+                    '1'
+                when Date(`end_time`) &gt; NOW() then
+                    '2'
+            ) as liveStatus
+        from
+            live_course
+        where DATE(`start_time`) &gt;= curdate()
+        limit 5
+    </select>
+</mapper>

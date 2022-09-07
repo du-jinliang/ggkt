@@ -20,7 +20,7 @@ import java.util.Map;
  * @author DuJinliang
  * 2022/08/22
  */
-@Api(tags = "课程内部管理接口")
+@Api(tags = "课程信息接口")
 @RestController
 @RequestMapping("/api/vod/course")
 public class CourseApiController {

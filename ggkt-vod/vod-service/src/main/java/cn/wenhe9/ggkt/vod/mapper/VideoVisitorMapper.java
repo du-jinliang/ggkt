@@ -2,7 +2,6 @@ package cn.wenhe9.ggkt.vod.mapper;
 
 import cn.wenhe9.ggkt.vod.entity.VideoVisitor;
 import cn.wenhe9.ggkt.vod.vo.VideoVisitorCountVo;
-import cn.wenhe9.ggkt.vod.vo.VideoVisitorVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 

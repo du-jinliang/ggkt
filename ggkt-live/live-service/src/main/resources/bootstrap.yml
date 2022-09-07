@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active:
+      - dev
+      - secret
+  cloud:
+    nacos:
+      config:
+        extension-configs:
+          - data-id: ggkt-mtcloud.yml
+            group: ggkt-common
+            refresh: true
