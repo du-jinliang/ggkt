@@ -1,0 +1,19 @@
+server:
+  port: 7001
+
+spring:
+  security: # 配置登录用户名和密码
+    user:
+      name: admin
+      password: admin
+  boot:  # 不显示admin-server的监控信息
+    admin:
+      discovery:
+        ignored-services: ${spring.application.name}
+
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 7c3678eb-dd51-46e4-afb5-05f885cd0c25

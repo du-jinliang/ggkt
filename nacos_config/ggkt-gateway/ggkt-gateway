@@ -1,0 +1,59 @@
+management: #开启SpringBoot Admin的监控
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+server:
+  port: 7000
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 7c3678eb-dd51-46e4-afb5-05f885cd0c25
+    gateway:
+      routes:
+        - id: vod-route
+          uri: lb://ggkt-vod
+          predicates:
+            - Path=/admin/vod/**
+        - id: oss-route
+          uri: lb://ggkt-oss
+          predicates:
+            - Path=/api/oss/**
+        - id: order-route
+          uri: lb://ggkt-order
+          predicates:
+            - Path=/admin/order/**
+        - id: activity-route
+          uri: lb://ggkt-activity
+          predicates:
+            - Path=/admin/activity/**
+        - id: user-route
+          uri: lb://ggkt-user
+          predicates:
+            - Path=/admin/user/**
+        - id: wechat-route
+          uri: lb://ggkt-wechat
+          predicates:
+            - Path=/admin/wechat/**
+        - id: wechat-api-route
+          uri: lb://ggkt-wechat
+          predicates:
+            - Path=/api/wechat/**
+        - id: user-api-route
+          uri: lb://ggkt-user
+          predicates:
+            - Path=/api/user/**
+        - id: vod-api-route
+          uri: lb://ggkt-vod
+          predicates:
+            - Path=/api/vod/**
+        - id: live-route
+          uri: lb://ggkt-live
+          predicates:
+            - Path=/admin/live/**

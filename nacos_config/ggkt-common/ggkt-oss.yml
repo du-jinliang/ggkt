@@ -1,0 +1,5 @@
+qiniu:
+  oss:
+    access_key: 公钥
+    secret_key: 私钥
+    bucket: 包名

@@ -1,0 +1,7 @@
+tecent:
+  vod:
+    appId: 123
+    accessKey: 公钥
+    secretKey: 私钥
+    procedure: LongVideoPreset
+    region: ap-beijing
