@@ -4,10 +4,12 @@ import cn.wenhe9.ggkt.live.entity.LiveCourse;
 import cn.wenhe9.ggkt.live.vo.LiveCourseConfigVo;
 import cn.wenhe9.ggkt.live.vo.LiveCourseFormVo;
 import cn.wenhe9.ggkt.live.vo.LiveCourseVo;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -58,4 +60,14 @@ public interface LiveCourseService extends IService<LiveCourse> {
      * 获取最近的直播
      */
     List<LiveCourseVo> findLatelyLiveCourseList();
+
+    /**
+     * 获取用户access_token
+     */
+    JSONObject getPlayAuth(Long id, Long userId);
+
+    /**
+     * 根据ID查询课程
+     */
+    Map<String, Object> getInfoById(Long courseId);
 }

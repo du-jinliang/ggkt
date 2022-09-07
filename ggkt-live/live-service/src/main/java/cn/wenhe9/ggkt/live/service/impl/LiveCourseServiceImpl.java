@@ -4,14 +4,17 @@ import cn.wenhe9.ggkt.common.exception.GgktException;
 import cn.wenhe9.ggkt.common.result.ResultResponseEnum;
 import cn.wenhe9.ggkt.live.entity.*;
 import cn.wenhe9.ggkt.live.feign.TeacherFeignClient;
+import cn.wenhe9.ggkt.live.feign.UserInfoFeignClient;
 import cn.wenhe9.ggkt.live.mapper.LiveCourseMapper;
 import cn.wenhe9.ggkt.live.mtcloud.CommonResult;
 import cn.wenhe9.ggkt.live.mtcloud.MTCloud;
 import cn.wenhe9.ggkt.live.service.*;
+import cn.wenhe9.ggkt.live.utils.DateUtil;
 import cn.wenhe9.ggkt.live.vo.LiveCourseConfigVo;
 import cn.wenhe9.ggkt.live.vo.LiveCourseFormVo;
 import cn.wenhe9.ggkt.live.vo.LiveCourseGoodsView;
 import cn.wenhe9.ggkt.live.vo.LiveCourseVo;
+import cn.wenhe9.ggkt.user.entity.UserInfo;
 import cn.wenhe9.ggkt.vod.entity.Teacher;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -57,6 +60,9 @@ public class LiveCourseServiceImpl extends ServiceImpl<LiveCourseMapper, LiveCou
 
     @Resource
     private LiveCourseGoodsService liveCourseGoodsService;
+    
+    @Resource
+    private UserInfoFeignClient userInfoFeignClient;
 
     @Resource
     private MTCloud mtCloudClient;
@@ -288,6 +294,61 @@ public class LiveCourseServiceImpl extends ServiceImpl<LiveCourseMapper, LiveCou
         return liveCourseVoList;
     }
 
+    @SneakyThrows
+    @Override
+    public JSONObject getPlayAuth(Long id, Long userId) {
+        LiveCourse liveCourse = this.getById(id);
+        UserInfo userInfo = userInfoFeignClient.getUserInfoById(userId);
+        HashMap<Object,Object> options = new HashMap<Object, Object>();
+        String res = mtCloudClient.courseAccess(liveCourse.getCourseId().toString(), userId.toString(), userInfo.getNickName(), MTCloud.ROLE_USER, 80*80*80, options);
+        CommonResult<JSONObject> commonResult = JSON.parseObject(res, CommonResult.class);
+        if(Integer.parseInt(commonResult.getCode()) == MTCloud.CODE_SUCCESS) {
+            JSONObject object = commonResult.getData();
+            System.out.println("access::"+object.getString("access_token"));
+            return object;
+        } else {
+            throw new GgktException(ResultResponseEnum.GET_ACCESS_TOKEN_ERROR);
+        }
+    }
+
+    @Override
+    public Map<String, Object> getInfoById(Long courseId) {
+        LiveCourse liveCourse = this.getById(courseId);
+        liveCourse.getParam().put("startTimeString", new DateTime(liveCourse.getStartTime()).toString("yyyy年MM月dd HH:mm"));
+        liveCourse.getParam().put("endTimeString", new DateTime(liveCourse.getEndTime()).toString("yyyy年MM月dd HH:mm"));
+        Teacher teacher = teacherFeignClient.findTeacherInfo(liveCourse.getTeacherId());
+        LiveCourseDescription liveCourseDescription = liveCourseDescriptionService.getByLiveCourseId(courseId);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("liveCourse", liveCourse);
+        map.put("liveStatus", this.getLiveStatus(liveCourse));
+        map.put("teacher", teacher);
+        if(null != liveCourseDescription) {
+            map.put("description", liveCourseDescription.getDescription());
+        } else {
+            map.put("description", "");
+        }
+        return map;
+    }
+
+
+
+    /**
+     * 直播状态 0：未开始 1：直播中 2：直播结束
+     */
+    private int getLiveStatus(LiveCourse liveCourse) {
+        // 直播状态 0：未开始 1：直播中 2：直播结束
+        int liveStatus = 0;
+        Date curTime = new Date();
+        if(DateUtil.dateCompare(curTime, liveCourse.getStartTime())) {
+            liveStatus = 0;
+        } else if(DateUtil.dateCompare(curTime, liveCourse.getEndTime())) {
+            liveStatus = 1;
+        } else {
+            liveStatus = 2;
+        }
+        return liveStatus;
+    }
 
     /**
      * 上传直播配置
